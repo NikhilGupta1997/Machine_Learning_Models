@@ -23,7 +23,7 @@ Saved_Theta = []
 
 ''' This provides the analytical solution '''
 def analytical_solution(X, Y):
-    return np.linalg.inv(X.T* X) * X.T * Y
+    return np.linalg.inv(X.T * X) * X.T * Y
 
 ''' To Read the X values '''
 def Xread():
@@ -43,7 +43,7 @@ def create_J(X, Y, Theta):
 
 ''' Returns the gradient of J(theta) '''
 def create_gradJ(X, Y, Theta):
-	return X.T * (X*Theta - Y) / X.shape[0]
+	return X.T * (X * Theta - Y) / X.shape[0]
 
 ''' The Gradient Descent Algorithm '''
 def gradient_descent(X, Y):
@@ -73,7 +73,7 @@ def gradient_descent(X, Y):
 
 ''' Equation of the hypothesis function '''
 def linear(Theta, x):
-	return Theta.item(1)*x + Theta.item(0)
+	return (Theta.item(1) * x) + Theta.item(0)
 
 # Read input values
 X = Xread()
@@ -82,7 +82,7 @@ Y = Yread()
 # Normalize
 X_mean = np.mean(X, axis=0)
 X_std = np.std(X, axis=0)
-X = (X-X_mean)/X_std
+X = (X - X_mean)/X_std
 X = np.c_[np.ones((X.shape[0], 1)), X]
 
 # Perform Gradient Descent
