@@ -75,25 +75,25 @@ def gradient_descent(X, Y):
 def linear(Theta, x):
 	return Theta.item(1)*x + Theta.item(0)
 
-''' Read input values '''
+# Read input values
 X = Xread()
 Y = Yread()
 
-''' Normalize '''
+# Normalize
 X_mean = np.mean(X, axis=0)
 X_std = np.std(X, axis=0)
 X = (X-X_mean)/X_std
 X = np.c_[np.ones((X.shape[0], 1)), X]
 
-''' Perform Gradient Descent '''
+# Perform Gradient Descent
 FinalTheta = gradient_descent(X, Y)
 
-''' Print Output '''
+# Print Output
 print 'Analytical Solution\n', analytical_solution(X,Y)
 print 'Gradient Decent Solution\n', FinalTheta
 print 'Iterations used = ', iteration
 
-''' 2D plot of the hypothesis function '''
+### 2D plot of the hypothesis function ###
 X_plot = [item[1] for item in X.tolist()]
 Y_plot = [item[0] for item in Y.tolist()]
 x = np.arange(min(X_plot)-1, max(X_plot)+1, 0.1)
@@ -109,7 +109,7 @@ plt.xlabel('Area')
 plt.title('House Prices')
 plt.show()
 
-''' 3D plot of the J(theta) function '''
+### 3D plot of the J(theta) function ###
 # Returns the value of J(theta)
 def create_J_plot(Theta_0, Theta_1):
 	Theta = np.matrix([[Theta_0],[Theta_1]])
@@ -120,7 +120,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.set_zlim(-100, 200)
 
-# # Plot the 3D curve
+# Plot the 3D curve
 A = []; B = []; C = []
 theta_0_plot = np.arange(-15, 20, 0.5)
 theta_1_plot = np.arange(-15, 20, 0.5)

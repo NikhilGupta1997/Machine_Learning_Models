@@ -19,6 +19,7 @@ def Xread():
 def Yread():
 	return np.matrix([[(line.strip())] for line in open('y.dat')])
 
+''' Generate Linear Boundary '''
 def LinBoundary(u0,u1,S,X):
 	Mat1 = u0*inv(S) - u1*inv(S)
 	Mat2 = inv(S)*(u0.T - u1.T)
@@ -33,6 +34,7 @@ def LinBoundary(u0,u1,S,X):
 		x2.append(temp)
 	return x1,x2
 
+''' Generate Quadratic Boudary '''
 def QuadBoundary(u0,u1,S0,S1,X):
     Mat1 = inv(S0) - inv(S1)
     Mat2 = (-2)*(inv(S0) * u0.T - inv(S1) *u1.T)
@@ -51,11 +53,11 @@ def QuadBoundary(u0,u1,S0,S1,X):
         x2.append(temp/(2*c))
     return x1,x2
 
-''' Read input values '''
+# Read input values
 X = Xread()
 Y = Yread()
 
-''' Normalize '''
+# Normalize
 X_mean = np.mean(X, axis=0)
 X_std = np.std(X, axis=0)
 X = (X-X_mean)/X_std
@@ -69,12 +71,15 @@ for i in range(len(Y.tolist())):
 	else:
 		X_zero.append([X.tolist()[i][0], X.tolist()[i][1]])
 
+# Calculate Variables
 phi = float(len(X_one))/(len(X_one) + len(X_zero))
 mean_0 = np.sum(np.matrix(X_zero), axis=0) / len(X_zero)
 mean_1 = np.sum(np.matrix(X_one), axis=0) / len(X_one)
+print 'Phi = ', phi,
+print 'mean_0 = ', mean_0
+print 'mean_1 = ', mean_1
 
-print phi, mean_0, mean_1
-
+# Generate Sigma Matricies
 sigma = np.zeros((2, 2))
 sigma_0 = np.zeros((2, 2))
 sigma_1 = np.zeros((2, 2))

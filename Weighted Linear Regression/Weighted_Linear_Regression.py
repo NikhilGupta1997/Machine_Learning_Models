@@ -66,29 +66,27 @@ def normal_solution(curr_x, X, Y):
 	Theta = initialize_theta(X.shape[1])
 	return analytical_solution(X, Y)
 
-''' Read input values '''
+# Read input values
 X = Xread()
 Y = Yread()
 
-''' Normalize '''
+# Normalize
 X_mean = np.mean(X, axis=0)
 X_std = np.std(X, axis=0)
 X = (X-X_mean)/X_std
 X = np.c_[np.ones((X.shape[0], 1)), X]
 
-print X, Y
-
-''' Get min and max values '''
+# Get min and max values
 min_X = X.min(axis=0).tolist()[0]
 max_X = X.max(axis=0).tolist()[0]
 
-''' Create a list of lists to hold x values over a range '''
+# Create a list of lists to hold x values over a range
 Ranges = []
 for i in xrange(1, X.shape[1]):
 	temp = np.linspace(min_X[i], max_X[i], INTERVAL_SIZE).tolist()
 	Ranges.append(temp)
 
-''' Calculate Theta for each value of x '''
+# Calculate Theta for each value of x
 Saved_Theta = []
 for x in itertools.product(*Ranges):
 	FinalTheta = normal_solution_W(x, X, Y)
@@ -96,7 +94,7 @@ for x in itertools.product(*Ranges):
 	print 'Theta obtained\n', FinalTheta
 	Saved_Theta.append([x[0], FinalTheta.item(0), FinalTheta.item(1)])
 
-''' 2D plot of the Hypothesis Function '''
+### 2D plot of the Hypothesis Function ###
 X_plot = [item[1] for item in X.tolist()]
 Y_plot = [item[0] for item in Y.tolist()]
 

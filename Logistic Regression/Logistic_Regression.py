@@ -48,21 +48,17 @@ def norm(newTheta, Theta):
 def boundary(x, Theta):
 	return (-Theta.item(1)*x-Theta.item(0))/Theta.item(2)
 
-''' Read input values '''
+# Read input values
 X = Xread()
 Y = Yread()
 
-print X
-
-''' Normalize '''
+# Normalize
 X_mean = np.mean(X, axis=0)
 X_std = np.std(X, axis=0)
 X = (X-X_mean)/X_std
 X = np.c_[np.ones((X.shape[0], 1)), X]
 
-print X
-
-''' Calculate Boundary using Newton's Method '''
+# Calculate Boundary using Newton's Method
 Theta = initialize_theta(X.shape[1])
 while(True):
 	iteration += 1
@@ -73,7 +69,7 @@ while(True):
 print 'Theta \n', Theta
 print 'Iterations = ', iteration
 
-''' Create 2D Plot of points and classification boundary '''
+### Create 2D Plot of points and classification boundary ###
 # Create two lists based on classification
 X_one = []
 X_zero = []
