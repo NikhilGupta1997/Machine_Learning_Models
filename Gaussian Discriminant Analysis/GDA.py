@@ -13,11 +13,11 @@ from numpy.linalg import inv
 
 ''' To Read the X values '''
 def Xread():
-	return np.matrix([map(float, line.strip().split()) for line in open('q4x.dat')])
+	return np.matrix([map(float, line.strip().split()) for line in open('x.dat')])
 
 ''' To Read the Y values '''
 def Yread():
-	return np.matrix([[(line.strip())] for line in open('q4y.dat')])
+	return np.matrix([[(line.strip())] for line in open('y.dat')])
 
 def LinBoundary(u0,u1,S,X):
 	Mat1 = u0*inv(S) - u1*inv(S)

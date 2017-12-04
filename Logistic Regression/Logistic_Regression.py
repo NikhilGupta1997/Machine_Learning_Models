@@ -16,11 +16,11 @@ Epsilon = 1e-10
 
 ''' To Read the X values '''
 def Xread():
-	return np.matrix([map(float, line.strip().split()) for line in open('q2x.dat')])
+	return np.matrix([map(float, line.strip().split()) for line in open('x.dat')])
 
 ''' To Read the Y values '''
 def Yread():
-	return np.matrix([[float(line.strip())] for line in open('q2y.dat')])
+	return np.matrix([[float(line.strip())] for line in open('y.dat')])
  
 ''' To create a theta vector based on dimension of input '''
 def initialize_theta(x):

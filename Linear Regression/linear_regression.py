@@ -27,11 +27,11 @@ def analytical_solution(X, Y):
 
 ''' To Read the X values '''
 def Xread():
-	return np.matrix([map(float, line.strip().split()) for line in open('q1x.dat')])
+	return np.matrix([map(float, line.strip().split()) for line in open('x.dat')])
 
 ''' To Read the Y values '''
 def Yread():
-	return np.matrix([[float(line.strip())] for line in open('q1y.dat')])
+	return np.matrix([[float(line.strip())] for line in open('y.dat')])
  
 ''' To create a theta vector based on dimension of input '''
 def initialize_theta(x):
@@ -62,10 +62,8 @@ def gradient_descent(X, Y):
 		if math.fabs(J - newJ) < Epsilon: 	# Value has converged
 			break
 		elif newJ > J:						# Overshoot condition
-			# LearningRate *= 0.85	
 			if iteration > 8:
 				break		
-			# continue
 		else:								# Normal Gradient Descent
 			LearningRate *= 1.0001			
 		Theta = newTheta
@@ -123,7 +121,6 @@ ax = fig.add_subplot(111, projection='3d')
 ax.set_zlim(-100, 200)
 
 # # Plot the 3D curve
-# wframe = None
 A = []; B = []; C = []
 theta_0_plot = np.arange(-15, 20, 0.5)
 theta_1_plot = np.arange(-15, 20, 0.5)
@@ -133,7 +130,7 @@ ax.plot_surface(theta_0_plot, theta_1_plot, Z, rstride=1, cstride=1, alpha=0.3, 
 
 # Animation
 for line in Saved_Theta:
-	# Plot the new wireframe and pause briefly before continuing.
+	# Plot the new wireframe and pause briefly before continuing
 	A.append(line[0]); B.append(line[1]); C.append(line[2])
 	wframe = ax.plot_wireframe(A, B, C, rstride=1, cstride=1)
 	point = ax.plot([line[0]],[line[1]],[line[2]], 'ro')
@@ -144,10 +141,10 @@ A = []; B = []; C = []
 cont = plt.figure()
 CS = plt.contour(theta_0_plot, theta_1_plot, Z)
 plt.title('Contour Plot Showing Gradient Descent')
+
 # Animation
 for line in Saved_Theta:
-	# Plot the new wireframe and pause briefly before continuing.
-	# wframe = plt.plot_wireframe(A, B, C, rstride=1, cstride=1)
+	# Plot the new wireframe and pause briefly before continuing
 	A.append(line[0]); B.append(line[1]); C.append(line[2])
 	point = plt.plot([line[0]],[line[1]], 'ro')
 	point = plt.plot(A,B)
